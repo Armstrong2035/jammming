@@ -1,9 +1,17 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { SearchBar } from "../SearchBar/SearchBarContainer";
+import { SearchBarComponent } from "./SearchBar/SearchBarComponent";
+import { SearchResults } from "./SearchResults/SearchResultsComponent";
+import { Playlist } from "./Playlist/PlaylistComponent";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <SearchBarComponent />
+      <SearchResults />
+      <Playlist />
+    </div>
+  );
 }
 
 export default App;
