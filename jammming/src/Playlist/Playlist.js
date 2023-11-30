@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Track } from "../Track/Track";
 
-function Playlist() {
-  const songList = [];
+function Playlist({ playlist }) {
+  const newPlaylist = playlist;
   const [name, setName] = useState("");
   const namePlaylist = (e) => {
     setName(e.target.value);
@@ -15,20 +16,21 @@ function Playlist() {
           type="text"
           name="name"
           value={name}
+          onChange={namePlaylist}
         />
       </h3>
       <div>
         <ul>
-          {songList.map((song, index) => (
-            <li key={index}>
-              {song}{" "}
+          {newPlaylist.map((track) => (
+            <li key={track.id}>
+              <Track track={track} />
               <span>
-                <button type="submit">-</button>
+                <button type="button">-</button>
               </span>
             </li>
           ))}
         </ul>
-        <button type="submit">Add To Spotify</button>
+        <button type="button">Add To Spotify</button>
       </div>
     </div>
   );

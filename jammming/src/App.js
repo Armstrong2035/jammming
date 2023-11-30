@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { useState } from "react";
 import { SearchBar, SearchBarComponent } from "./SearchBar/SearchBar";
 import { SearchResults } from "./SearchResults/SearchResults";
 import { Playlist } from "./Playlist/Playlist";
@@ -68,11 +69,16 @@ function App() {
       album: "Mighty To Save",
     },
   ];
+  const [playlist, setPlaylist] = useState([]);
+  const updatedPlaylist = (selectedTrack) => {
+    setPlaylist([...playlist, selectedTrack]);
+    console.log(playlist);
+  };
   return (
     <div className="App">
       <SearchBar />
-      <SearchResults tracks={trackList} />
-      <Playlist />
+      <SearchResults tracks={trackList} updatedPlaylist={updatedPlaylist} />
+      <Playlist playlist={playlist} />
     </div>
   );
 }
