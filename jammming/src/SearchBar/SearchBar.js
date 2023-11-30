@@ -1,6 +1,7 @@
 import React from "react";
+import App from "../App";
 
-function SearchBarComponent() {
+function SearchBar() {
   return (
     <div>
       <form>
@@ -12,4 +13,4 @@ function SearchBarComponent() {
   );
 }
 
-export { SearchBarComponent };
+export { SearchBar };
