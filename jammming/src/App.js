@@ -72,7 +72,6 @@ function App() {
   const [playlist, setPlaylist] = useState([]);
   const updatedPlaylist = (selectedTrack) => {
     setPlaylist([...playlist, selectedTrack]);
-    console.log(playlist);
   };
   return (
     <div className="App">
