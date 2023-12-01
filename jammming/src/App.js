@@ -73,11 +73,16 @@ function App() {
   const updatedPlaylist = (selectedTrack) => {
     setPlaylist([...playlist, selectedTrack]);
   };
+
+  const removeFromPlaylist = (trackId) => {
+    setPlaylist(playlist.filter((track) => track.id !== trackId));
+  };
+
   return (
     <div className="App">
       <SearchBar />
       <SearchResults tracks={trackList} updatedPlaylist={updatedPlaylist} />
-      <Playlist playlist={playlist} />
+      <Playlist playlist={playlist} removeFromPlaylist={removeFromPlaylist} />
     </div>
   );
 }

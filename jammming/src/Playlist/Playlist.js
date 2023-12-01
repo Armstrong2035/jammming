@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { Track } from "../Track/Track";
+import App from "../App";
 
-function Playlist({ playlist }) {
+function Playlist({ playlist, removeFromPlaylist }) {
   const newPlaylist = playlist;
   const [name, setName] = useState("");
   const namePlaylist = (e) => {
     setName(e.target.value);
   };
+
+  const removeTrack = (track) => {
+    removeFromPlaylist(track);
+  };
+
   return (
     <div>
       <h3>
@@ -25,7 +31,9 @@ function Playlist({ playlist }) {
             <li key={track.id}>
               <Track track={track} />
               <span>
-                <button type="button">-</button>
+                <button type="button" onClick={() => removeTrack(track.id)}>
+                  -
+                </button>
               </span>
             </li>
           ))}
