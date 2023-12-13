@@ -4,7 +4,9 @@ import App from "../App";
 
 function Playlist({ playlist, removeFromPlaylist }) {
   const newPlaylist = playlist;
+
   const [name, setName] = useState("");
+  const [uriArray, setUriArray] = useState([]);
   const namePlaylist = (e) => {
     setName(e.target.value);
   };
@@ -38,7 +40,18 @@ function Playlist({ playlist, removeFromPlaylist }) {
             </li>
           ))}
         </ul>
-        <button type="button">Add To Spotify</button>
+        <button
+          type="button"
+          onClick={() => (
+            <ul>
+              {newPlaylist.map((track) => (
+                <li>{track.uri}</li>
+              ))}
+            </ul>
+          )}
+        >
+          Add To Spotify
+        </button>
       </div>
     </div>
   );
