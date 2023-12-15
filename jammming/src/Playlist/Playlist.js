@@ -7,12 +7,18 @@ function Playlist({ playlist, removeFromPlaylist }) {
 
   const [name, setName] = useState("");
   const [uriArray, setUriArray] = useState([]);
+
   const namePlaylist = (e) => {
     setName(e.target.value);
   };
 
   const removeTrack = (track) => {
     removeFromPlaylist(track);
+  };
+
+  const addToSpotify = () => {
+    const trackURIs = newPlaylist.map((track) => track.uri);
+    setUriArray(trackURIs);
   };
 
   return (
@@ -33,25 +39,21 @@ function Playlist({ playlist, removeFromPlaylist }) {
             <li key={track.id}>
               <Track track={track} />
               <span>
-                <button type="button" onClick={() => removeTrack(track.id)}>
+                <button type="button" onClick={addToSpotify}>
                   -
                 </button>
               </span>
             </li>
           ))}
         </ul>
-        <button
-          type="button"
-          onClick={() => (
-            <ul>
-              {newPlaylist.map((track) => (
-                <li>{track.uri}</li>
-              ))}
-            </ul>
-          )}
-        >
+        <button type="button" onClick={addToSpotify}>
           Add To Spotify
         </button>
+        {/* <ul>
+          {uriArray.map((track) => (
+            <li>{track}</li>
+          ))}
+        </ul> */}
       </div>
     </div>
   );
