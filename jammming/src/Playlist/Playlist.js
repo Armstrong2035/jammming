@@ -39,7 +39,7 @@ function Playlist({ playlist, removeFromPlaylist }) {
             <li key={track.id}>
               <Track track={track} />
               <span>
-                <button type="button" onClick={addToSpotify}>
+                <button type="button" onClick={() => removeTrack(track.id)}>
                   -
                 </button>
               </span>
@@ -49,11 +49,6 @@ function Playlist({ playlist, removeFromPlaylist }) {
         <button type="button" onClick={addToSpotify}>
           Add To Spotify
         </button>
-        {/* <ul>
-          {uriArray.map((track) => (
-            <li>{track}</li>
-          ))}
-        </ul> */}
       </div>
     </div>
   );
