@@ -49,6 +49,7 @@ function Playlist({ playlist, removeFromPlaylist }) {
         <button type="button" onClick={addToSpotify}>
           Add To Spotify
         </button>
+        +
       </div>
     </div>
   );
