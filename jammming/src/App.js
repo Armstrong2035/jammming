@@ -5,6 +5,7 @@ import { SearchBar, SearchBarComponent } from "./SearchBar/SearchBar";
 import { SearchResults } from "./SearchResults/SearchResults";
 import { Playlist } from "./Playlist/Playlist";
 import { Track } from "./Track/Track";
+import { GetSpotifyToken } from "./SpotifyToken";
 
 function App() {
   const trackList = [
@@ -93,6 +94,7 @@ function App() {
   return (
     <div className="App">
       <SearchBar />
+      <GetSpotifyToken />
       <SearchResults tracks={trackList} updatedPlaylist={updatedPlaylist} />
       <Playlist playlist={playlist} removeFromPlaylist={removeFromPlaylist} />
     </div>
