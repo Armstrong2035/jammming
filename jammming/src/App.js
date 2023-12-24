@@ -1,13 +1,15 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SearchBar, SearchBarComponent } from "./SearchBar/SearchBar";
 import { SearchResults } from "./SearchResults/SearchResults";
 import { Playlist } from "./Playlist/Playlist";
 import { Track } from "./Track/Track";
-import { GetSpotifyToken } from "./SpotifyToken";
+import { AuthorizeUser } from "./SpotifyToken";
 
 function App() {
+  // const clientId = "5012b99bc5384012a9b77e50d955c3b6";
+  // const clientSecret = "dfb1f61bdbb7494e80ac84cc8aa7d484";
   const trackList = [
     {
       id: 1,
@@ -82,7 +84,28 @@ function App() {
       uri: "spotify:track:2dgrYdgguVZKeCsrVb9XEs",
     },
   ];
+
+  // const [accessToken, setAccessToken] = useState("");
   const [playlist, setPlaylist] = useState([]);
+
+  //authorize user
+  // useEffect(() => {
+  //   var authParameters = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-type": "application/x-www-form-urlencoded",
+  //     },
+  //     body:
+  //       "grant_type=client_credentials&client_id=" +
+  //       clientId +
+  //       "&client_secret=" +
+  //       clientSecret,
+  //   };
+  //   fetch("https://accounts.spotify.com/api/token", authParameters)
+  //     .then((result) => result.json())
+  //     .then((data) => console.log(data));
+  // }, []);
+
   const updatedPlaylist = (selectedTrack) => {
     setPlaylist([...playlist, selectedTrack]);
   };
@@ -93,8 +116,8 @@ function App() {
 
   return (
     <div className="App">
+      <AuthorizeUser />
       <SearchBar />
-      <GetSpotifyToken />
       <SearchResults tracks={trackList} updatedPlaylist={updatedPlaylist} />
       <Playlist playlist={playlist} removeFromPlaylist={removeFromPlaylist} />
     </div>
