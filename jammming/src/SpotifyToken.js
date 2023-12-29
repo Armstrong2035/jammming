@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 const clientId = "5012b99bc5384012a9b77e50d955c3b6";
 const clientSecret = "dfb1f61bdbb7494e80ac84cc8aa7d484";
 
-function AuthorizeUser() {
-  const [accessToken, setAccessToken] = useState("");
+function AuthorizeUser({ receiveAccessToken }) {
+  // const [accessToken, setAccessToken] = useState("");
   useEffect(() => {
     var authParameters = {
       method: "POST",
@@ -19,10 +19,10 @@ function AuthorizeUser() {
     };
     fetch("https://accounts.spotify.com/api/token", authParameters)
       .then((result) => result.json())
-      .then((data) => setAccessToken(data.access_token));
+      .then((data) => receiveAccessToken(data.access_token));
   }, []);
 }
 
-export { AuthorizeUser };
+export { AuthorizeUser, clientId, clientSecret };
 
 //error handling has not been done.

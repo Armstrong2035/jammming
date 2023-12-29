@@ -85,8 +85,13 @@ function App() {
     },
   ];
 
+  const [accessToken, setAccessToken] = useState("");
   const [playlist, setPlaylist] = useState([]);
 
+  const receiveAccessToken = (token) => {
+    setAccessToken(token);
+    // console.log(token);
+  };
   const updatedPlaylist = (selectedTrack) => {
     setPlaylist([...playlist, selectedTrack]);
   };
@@ -97,8 +102,8 @@ function App() {
 
   return (
     <div className="App">
-      <AuthorizeUser />
-      <SearchBar />
+      <AuthorizeUser receiveAccessToken={receiveAccessToken} />
+      <SearchBar accessToken={accessToken} />
       <SearchResults tracks={trackList} updatedPlaylist={updatedPlaylist} />
       <Playlist playlist={playlist} removeFromPlaylist={removeFromPlaylist} />
     </div>
