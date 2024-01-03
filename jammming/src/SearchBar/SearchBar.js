@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import App from "../App";
 import { clientId, clientSecret } from "../AuthorizeUser";
 
-function SearchBar({ accessToken }) {
+function SearchBar({ accessToken, receiveResult }) {
   const [query, setQuery] = useState("");
-  const [result, setResult] = useState([]);
 
   // console.log(accessToken);
 
@@ -27,10 +26,8 @@ function SearchBar({ accessToken }) {
       headers
     )
       .then((response) => response.json())
-      .then((data) => setResult(data));
+      .then((data) => receiveResult(data.tracks.items));
   }
-
-  console.log(result);
 
   return (
     <div>
