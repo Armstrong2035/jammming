@@ -1,40 +1,36 @@
 import React, { useState } from "react";
 import App from "../App";
-import { clientId, clientSecret } from "../SpotifyToken";
+import { clientId, clientSecret } from "../AuthorizeUser";
 
 function SearchBar({ accessToken }) {
   const [query, setQuery] = useState("");
-  console.log(accessToken);
+  const [result, setResult] = useState([]);
+
+  // console.log(accessToken);
 
   //Track keystroke
   const searchQuery = (e) => {
     setQuery(e.target.value);
   };
 
-  async function search({ accessToken }) {
-    // console.log(`Searching for ${query}`);
-    var searchParameters = {
+  async function search() {
+    var headers = {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        Authorization: "Bearer=" + accessToken,
+        Authorization: `Bearer ${accessToken}`,
       },
-      body:
-        "grant_type=client_credentials&client_id=" +
-        clientId +
-        "&client_secret=" +
-        clientSecret,
     };
 
     var songId = await fetch(
-      "https://api.spotify.com/v1/search" +
-        query +
-        "&type=track" +
-        searchParameters
+      `https://api.spotify.com/v1/search?q=${query}&type=track`,
+      headers
     )
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => setResult(data));
   }
+
+  console.log(result);
 
   return (
     <div>

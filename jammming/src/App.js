@@ -5,7 +5,7 @@ import { SearchBar, SearchBarComponent } from "./SearchBar/SearchBar";
 import { SearchResults } from "./SearchResults/SearchResults";
 import { Playlist } from "./Playlist/Playlist";
 import { Track } from "./Track/Track";
-import { AuthorizeUser } from "./SpotifyToken";
+import { AuthorizeUser } from "./AuthorizeUser";
 
 function App() {
   // const clientId = "5012b99bc5384012a9b77e50d955c3b6";
@@ -90,7 +90,7 @@ function App() {
 
   const receiveAccessToken = (token) => {
     setAccessToken(token);
-    // console.log(token);
+    // console.log(accessToken);
   };
   const updatedPlaylist = (selectedTrack) => {
     setPlaylist([...playlist, selectedTrack]);

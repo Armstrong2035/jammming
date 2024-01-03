@@ -19,7 +19,10 @@ function AuthorizeUser({ receiveAccessToken }) {
     };
     fetch("https://accounts.spotify.com/api/token", authParameters)
       .then((result) => result.json())
-      .then((data) => receiveAccessToken(data.access_token));
+      .then((data) => {
+        receiveAccessToken(data.access_token);
+        console.log(`${data.access_token} gotten from Spotify Token`);
+      });
   }, []);
 }
 
