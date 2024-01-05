@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import App from "../App";
 import { Track } from "../Track/Track";
 
@@ -9,7 +9,24 @@ function SearchResults({ result, updatedPlaylist }) {
     updatedPlaylist(selectedTrack);
   };
 
+  useEffect(() => {
+    const tracksToAdd = result.map((i, index) => ({
+      id: index,
+      title: i.name,
+      artist: i.artists[0].name,
+      album: i.album.name,
+      image: i.album.images[0].url,
+      uri: i.uri,
+    }));
+    // tracks.push(track);
+
+    setTrackList((prevTrackList) => [...prevTrackList, ...tracksToAdd]);
+  }, [result]);
+
   console.log(result);
+  console.log(trackList);
+  // console.log(result[0].name); this works
+  // console.log(result[0].album.name); this works as well
 
   return (
     <div className="searchResults">
